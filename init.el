@@ -30,6 +30,10 @@
 (setq package-user-dir (concat dotfiles-dir "elpa"))
 (setq custom-file (concat dotfiles-dir "custom.el"))
 
+;; this must be loaded before ELPA since it bundles its own
+;; out-of-date js stuff. TODO: fix it to use ELPA dependencies
+(load "elpa-to-submit/nxhtml/autostart")
+
 (require 'package)
 (package-initialize)
 (require 'starter-kit-elpa)
@@ -49,6 +53,7 @@
 
 ;; Load up starter kit customizations
 
+(require 'starter-kit-php)
 (require 'starter-kit-defuns)
 (require 'starter-kit-bindings)
 (require 'starter-kit-misc)
