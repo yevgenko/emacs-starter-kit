@@ -1,3 +1,10 @@
+;; JabberEl
+(add-to-list 'load-path (concat dotfiles-dir "/vendor/emacs-jabber-0.8.0"))
+(require 'jabber-autoloads)
+
+;; Re-load custom.el after all
+(load custom-file 'noerror)
+
 ;; Color Theme
 (color-theme-blackboard)
 
@@ -30,3 +37,23 @@ is a comment, uncomment."
 ;;;;;;;;;;;;;;;;;;;;;;;;
 
 (global-set-key [(control \;)] 'comment-or-uncomment-region-or-line)
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Variable assignement ;;
+;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;;;;;;;;;;
+;; Hooks ;;
+;;;;;;;;;;;
+
+(eval-after-load 'jabber
+  '(progn
+     ;; Jabber Message alert hooks
+     (define-jabber-alert echo "Show a message in the echo area"
+       (lambda (msg)
+         (unless (minibuffer-prompt)
+           (message "%s" msg))))
+     
+     ;; Automatically highlight URLs
+     (add-hook 'jabber-chat-mode-hook 'goto-address)
+     ))
