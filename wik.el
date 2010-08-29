@@ -9,7 +9,7 @@
 (load custom-file 'noerror)
 
 ;; Color Theme
-(color-theme-blackboard)
+;; (color-theme-blackboard)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Functions definition ;;
@@ -109,7 +109,9 @@ is a comment, uncomment."
      
      ;; Automatically highlight URLs
      (add-hook 'jabber-chat-mode-hook 'goto-address)
-     ))
+     ;; Spell check automatically
+     (add-hook 'jabber-chat-mode-hook 'flyspell-mode)
+  ))
 
 (add-hook 'isearch-mode-hook
           (lambda ()
