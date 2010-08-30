@@ -128,11 +128,13 @@ is a comment, uncomment."
        (lambda (msg)
          (unless (minibuffer-prompt)
            (message "%s" msg))))
-     
-     ;; Automatically highlight URLs
-     (add-hook 'jabber-chat-mode-hook 'goto-address)
-     ;; Spell check automatically
-     (add-hook 'jabber-chat-mode-hook 'flyspell-mode)
+     ;; Jabber Chat mode hooks
+     (add-hook 'jabber-chat-mode-hook
+               (lambda ()
+               ;; Automatically highlight URLs
+               (goto-address)
+               ;; Spell check automatically
+               (flyspell-mode 1)))
   ))
 
 (add-hook 'isearch-mode-hook
